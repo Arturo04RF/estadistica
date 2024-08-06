@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Visitas por País</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Gráfico de Visitas por País</h1>
+    <canvas id="visitsChart"></canvas>
+
+    <script>
+        // Llama al archivo PHP que devuelve los datos
+        fetch('getCountryVisits.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    // Si hay un error, muestra un mensaje
+                    alert('No se encontraron datos');
+                    return;
+                }
+
+                const ctx = document.getElementById('visitsChart').getContext('2d');
+                const visitsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.labels,  // Nombres de los países
+                        datasets: [{
+                            label: 'Visitas',
+                            data: data.data,  // Número de visitas
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos:', error);
+                alert('Hubo un error al obtener los datos');
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<version>
+    <application>statistic</application>
+    <type>plugins.generic</type>
+    <release>1.0.0</release>
+    <date>2024-08-05</date>
+    <lazy-load>true</lazy-load>
+
+    <metadata>
+        <display_name>Statistics Button Plugin</display_name>
+        <description>Este plugin muestra un botón de estadísticas en la aplicación.</description>
+    </metadata>
+</version>

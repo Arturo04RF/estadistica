@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráfica de Visitas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="miGrafica" width="400" height="200"></canvas>
+
+    <script>
+        // Realiza una solicitud AJAX para obtener los datos JSON desde PHP
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'prueba.php', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Parsea los datos JSON recibidos
+                var datosJson = JSON.parse(xhr.responseText);
+
+                // Crea un array para almacenar las etiquetas y los datos
+                var etiquetas = [];
+                var datos = [];
+
+                // Recorre los datos JSON y extrae las etiquetas y los datos
+                for (var i = 0; i < datosJson.length; i++) {
+                    etiquetas.push(datosJson[i].month); // Cambia 'etiqueta' por 'month'
+                    datos.push(datosJson[i].total_visits); // Cambia 'dato' por 'total_visits'
+                }
+
+                // Crea la gráfica con Chart.js
+                var ctx = document.getElementById('miGrafica').getContext('2d');
+                var miGrafica = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: etiquetas,
+                        datasets: [{
+                            label: 'Visitas',
+                            data: datos,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        };
+        xhr.send();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,5 @@
+msgid "plugins.generic.statistics.name"
+msgstr "Reproductor de mp3"
+
+msgid "plugins.generic.statistics.description"
+msgstr "Este módulo sirve para abrir archivos MP3 y mostrar un Reproductor para evitar la descarga automatica"

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locale>
+    <message key="plugins.generic.statistics.name">Statistics Button Plugin</message>
+    <message key="plugins.generic.statistics.description">Este plugin muestra un botón de estadísticas en la aplicación.</message>
+</locale>
